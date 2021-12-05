@@ -1,5 +1,8 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 
 class YandexPage(object):
@@ -25,5 +28,6 @@ class YandexPage(object):
         self.input().send_keys(Keys.RETURN)
 
     def wait_result(self):
-        self.my_driver.implicitly_wait(5)
+        wait = WebDriverWait(self.my_driver, 10)
+        wait.until(EC.presence_of_element_located((By.ID, 'search-result')))
 
